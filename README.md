@@ -5,26 +5,8 @@
 ---
 ## FFmpeg 的運作邏輯 (The Pipeline)
 ```mermaid
-%%{ init: { 'flowchart': { 'curve': 'step' } } }%%
 graph TD
-    %% 設定第一排：水平流向 (A->D)
-    subgraph Row1 [第一階段：解碼]
-        direction LR
-        A[輸入檔案] --> B(Demuxer) --> C(Decoder) --> D[原始數據]
-    end
-
-    %% 設定第二排：水平流向 (E->H)
-    subgraph Row2 [第二階段：編碼]
-        direction LR
-        E(Filter) --> F(Encoder) --> G(Muxer) --> H[輸出檔案]
-    end
-
-    %% 連接兩排 (D 連到 E)
-    D --> E
-
-    %% 樣式美化 (隱藏子圖表的框線，讓它看起來像一個整體)
-    style Row1 fill:none,stroke:none
-    style Row2 fill:none,stroke:none
+    A[輸入檔案] --> B(Demuxer) --> C(Decoder) --> D[原始數據] --> E(Filter) --> F(Encoder) --> G(Muxer) --> H[輸出檔案]
 ```
 **安裝方法** :
 ```bash
