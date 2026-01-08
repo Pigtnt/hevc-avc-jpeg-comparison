@@ -1,18 +1,30 @@
-# 影像壓縮測試 (HEVC-AVC-JPEG-comparison)：H.265 vs H.264 vs JPEG
+# 影像壓縮測試 (HEVC-AVC-JPEG-comparison)：<br>H.265 vs H.264 vs JPEG
 **實驗環境**：WSL環境，使用FFmpeg (Fast Forward MPEG) <br>
 **實驗描述** : 採用 **「無損 PNG」** 作為原始圖片，並針對 **4K 高複雜度雜訊** 進行測試，展示 **H.265 vs H.264 vs JPEG**壓縮方法的壓縮率。
 
 ---
 ## FFmpeg 的運作邏輯 (The Pipeline)
 ```mermaid
-graph LR
-    A[輸入檔案 Input] --> B(Demuxer 解封裝)
-    B --> C(Decoder 解碼器)
-    C --> D[Raw Data 原始數據<br>YUV/PCM]
-    D --> E(Filter 濾鏡處理)
-    E --> F(Encoder 編碼器)
-    F --> G(Muxer 封裝)
-    G --> H[輸出檔案 Output]
+%%{ init: { 'flowchart': { 'curve': 'step' } } }%%
+graph TD
+    %% 設定第一排：水平流向 (A->D)
+    subgraph Row1 [第一階段：解碼]
+        direction LR
+        A[輸入檔案] --> B(Demuxer) --> C(Decoder) --> D[原始數據]
+    end
+
+    %% 設定第二排：水平流向 (E->H)
+    subgraph Row2 [第二階段：編碼]
+        direction LR
+        E(Filter) --> F(Encoder) --> G(Muxer) --> H[輸出檔案]
+    end
+
+    %% 連接兩排 (D 連到 E)
+    D --> E
+
+    %% 樣式美化 (隱藏子圖表的框線，讓它看起來像一個整體)
+    style Row1 fill:none,stroke:none
+    style Row2 fill:none,stroke:none
 ```
 **安裝方法** :
 ```bash
@@ -167,6 +179,7 @@ ls -lh source.png output_jpeg.jpg output_h264.mp4 output_h265.mp4
 ---
 ## 6. 額外補充
 ### 為什麼 H.265 是 HEIC 的核心？
-### $$\text{HEIC (檔案)} = \text{HEIF (容器格式)} + \text{H.265 (壓縮編碼)}$$HEIF (High Efficiency Image File Format)：是由 MPEG 組織定義的一種「容器標準」。它像是一個信封或紙箱，規定了檔案檔頭怎麼寫、資料怎麼放。<br>H.265 (HEVC) (High Efficiency Video Coding)：是實際把圖片數據變小的「壓縮演算法」。
+### $$\text{HEIC (檔案)} = \text{HEIF (容器格式)} + \text{H.265 (壓縮編碼)}$$
+### HEIF (High Efficiency Image File Format)：是由 MPEG 組織定義的一種「容器標準」。它像是一個信封或紙箱，規定了檔案檔頭怎麼寫、資料怎麼放。<br>H.265 (HEVC) (High Efficiency Video Coding)：是實際把圖片數據變小的「壓縮演算法」。
 
 ---
