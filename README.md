@@ -161,11 +161,17 @@ ls -lh source.png output_jpeg.jpg output_h264.mp4 output_h265.mp4
 ---
 ## 6. 額外補充
 ### 為什麼 H.265 是 HEIC 的核心？
+<<<<<<< HEAD
 
 $$
 \text{HEIC (檔案)} = \text{HEIF (容器格式)} + \text{H.265 (壓縮編碼)}
 $$
 
 ### HEIF (High Efficiency Image File Format)：是由 MPEG 組織定義的一種「容器標準」。它像是一個信封或紙箱，規定了檔案檔頭怎麼寫、資料怎麼放。<br>H.265 (HEVC) (High Efficiency Video Coding)：是實際把圖片數據變小的「壓縮演算法」。
+=======
+#### $$\text{HEIC (檔案)} = \text{HEIF (容器格式)} + \text{H.265 (壓縮編碼)}$$
+#### HEIF (High Efficiency Image File Format)：是由 MPEG 組織定義的一種「容器標準」。它像是一個信封或紙箱，規定了檔案檔頭怎麼寫、資料怎麼放。<br>H.265 (HEVC) (High Efficiency Video Coding)：是實際把圖片數據變小的「壓縮演算法」。
+>>>>>>> 5258be2a6a228033ab52905c0ac5219fd5ad9ff5
 
 ---
+
