@@ -126,7 +126,23 @@ ls -lh source.png output_jpeg.jpg output_h264.mp4 output_h265.mp4
 ---
 
 ## 3. 影像壓縮效率
+### 影像壓縮效率計算公式 (Image Compression Formulas)
+1. 壓縮倍率 (Compression Ratio)
+這是最直觀的指標，代表「檔案縮小了幾倍」。數值越高，代表壓縮能力越強。
 
+$$
+\text{Compression Ratio} = \frac{\text{Uncompressed Size (原始大小)}}{\text{Compressed Size (壓縮後大小)}}
+$$
+
+---
+2. 空間節省率 (Space Savings)
+這是行銷或雲端儲存成本計算時最常用的指標，代表「節省了多少百分比的空間」。
+
+$$
+\text{Space Saving (\%)} = \left( 1 - \frac{\text{Compressed Size}}{\text{Uncompressed Size}} \right) \times 100\%
+$$
+
+---
 | 編碼方式 | 檔案大小 | 節省空間 | 效率評價 |
 | :--- | :--- | :--- | :--- |
 | **PNG** (Source) | 22 MB | **原始圖片** | 無損 PNG 圖片，4K 高複雜度雜訊圖 |
@@ -166,7 +182,6 @@ $$
 \text{HEIC (檔案)} = \text{HEIF (容器格式)} + \text{H.265 (壓縮編碼)}
 $$
 
-### HEIF (High Efficiency Image File Format)：是由 MPEG 組織定義的一種「容器標準」。它像是一個信封或紙箱，規定了檔案檔頭怎麼寫、資料怎麼放。<br>H.265 (HEVC) (High Efficiency Video Coding)：是實際把圖片數據變小的「壓縮演算法」。
+#### HEIF (High Efficiency Image File Format)：是由 MPEG 組織定義的一種「容器標準」。它像是一個信封或紙箱，規定了檔案檔頭怎麼寫、資料怎麼放。<br>H.265 (HEVC) (High Efficiency Video Coding)：是實際把圖片數據變小的「壓縮演算法」。
 
 ---
-
